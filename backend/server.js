@@ -37,7 +37,6 @@ app.get('/api/health', (req, res) => {
 app.use(require('./middleware/errorHandler'));
 
 const PORT = process.env.PORT || 5000;
-
 const start = async () => {
   await connectDB();
   server.listen(PORT, () => {
