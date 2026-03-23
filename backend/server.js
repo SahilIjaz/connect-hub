@@ -5,7 +5,6 @@ const dotenv = require('dotenv');
 const path = require('path');
 const connectDB = require('./config/db');
 const { initializeSocket } = require('./config/socket');
-
 dotenv.config();
 const app = express();
 const server = http.createServer(app);
