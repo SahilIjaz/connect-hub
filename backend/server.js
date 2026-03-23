@@ -11,7 +11,6 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
-// Initialize Socket.io
 const io = initializeSocket(server);
 
 // Make io accessible in routes
