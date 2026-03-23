@@ -12,7 +12,6 @@ const app = express();
 const server = http.createServer(app);
 
 const io = initializeSocket(server);
-
 // Make io accessible in routes
 app.set('io', io);
 
