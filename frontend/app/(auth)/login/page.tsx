@@ -20,11 +20,17 @@ export default function LoginPage() {
     setError('');
     setIsLoading(true);
 
+    console.log('[LOGIN] Attempting login with:', { email });
     try {
+      console.log('[LOGIN] Calling login function...');
       await login(email, password);
+      console.log('[LOGIN] Login successful');
       router.push('/feed');
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Login failed');
+      console.error('[LOGIN] Login error:', err);
+      const errorMsg = err.response?.data?.message || err.message || 'Login failed';
+      console.error('[LOGIN] Error message:', errorMsg);
+      setError(errorMsg);
     } finally {
       setIsLoading(false);
     }
