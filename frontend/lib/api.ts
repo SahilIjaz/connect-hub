@@ -15,7 +15,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  logger.apiCall(config.method?.toUpperCase() || 'GET', config.url, config.data);
+  logger.apiCall(config.method?.toUpperCase() || 'GET', config.url || '', config.data);
 
   if (typeof window !== 'undefined') {
     const token = localStorage.getItem('token');
