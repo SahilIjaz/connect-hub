@@ -3,6 +3,7 @@ import './globals.css';
 import AuthProvider from '@/components/providers/AuthProvider';
 import SocketProvider from '@/components/providers/SocketProvider';
 import NotificationToast from '@/components/notifications/NotificationToast';
+import DebugLog from '@/components/DebugLog';
 
 export const metadata: Metadata = {
   title: 'Connect Hub - Social Network',
