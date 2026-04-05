@@ -22,6 +22,7 @@ export default function RootLayout({
           <SocketProvider>
             {children}
             <NotificationToast />
+            <DebugLog />
           </SocketProvider>
         </AuthProvider>
       </body>
