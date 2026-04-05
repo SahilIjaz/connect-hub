@@ -29,14 +29,23 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   register: async (name: string, email: string, password: string) => {
-    const { data } = await api.post<AuthResponse>('/auth/register', {
-      name,
-      email,
-      password,
-    });
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('user', JSON.stringify(data.user));
-    set({ user: data.user, token: data.token });
+    console.log('[STORE] Starting registration for:', email);
+    try {
+      console.log('[STORE] Calling API with:', { name, email });
+      const { data } = await api.post<AuthResponse>('/auth/register', {
+        name,
+        email,
+        password,
+      });
+      console.log('[STORE] Registration response received:', data);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      set({ user: data.user, token: data.token });
+      console.log('[STORE] Registration complete');
+    } catch (error: any) {
+      console.error('[STORE] Registration failed:', error.message);
+      throw error;
+    }
   },
 
   logout: () => {

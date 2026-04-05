@@ -32,6 +32,7 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use(
   (response) => {
+    console.log('[SUCCESS]', response.config.method?.toUpperCase(), response.config.url);
     logger.apiResponse(
       response.config.method?.toUpperCase() || 'GET',
       response.config.url || '',
@@ -41,6 +42,13 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
+    console.error('[NETWORK ERROR] Full error object:', error);
+    console.error('[NETWORK ERROR] Message:', error.message);
+    console.error('[NETWORK ERROR] Code:', error.code);
+    console.error('[NETWORK ERROR] URL attempted:', error.config?.url);
+    console.error('[NETWORK ERROR] Response status:', error.response?.status);
+    console.error('[NETWORK ERROR] Response data:', error.response?.data);
+
     logger.apiError(
       error.config?.method?.toUpperCase() || 'GET',
       error.config?.url || '',
