@@ -32,11 +32,17 @@ export default function RegisterPage() {
     }
 
     setIsLoading(true);
+    console.log('[REGISTER] Attempting registration with:', { name, email });
     try {
+      console.log('[REGISTER] Calling register function...');
       await register(name, email, password);
+      console.log('[REGISTER] Registration successful');
       router.push('/feed');
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Registration failed');
+      console.error('[REGISTER] Registration error:', err);
+      const errorMsg = err.response?.data?.message || err.message || 'Registration failed';
+      console.error('[REGISTER] Error message:', errorMsg);
+      setError(errorMsg);
     } finally {
       setIsLoading(false);
     }
