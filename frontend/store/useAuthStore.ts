@@ -19,13 +19,22 @@ export const useAuthStore = create<AuthState>((set) => ({
   isLoading: true,
 
   login: async (email: string, password: string) => {
-    const { data } = await api.post<AuthResponse>('/auth/login', {
-      email,
-      password,
-    });
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('user', JSON.stringify(data.user));
-    set({ user: data.user, token: data.token });
+    console.log('[STORE] Starting login for:', email);
+    try {
+      console.log('[STORE] Calling login API');
+      const { data } = await api.post<AuthResponse>('/auth/login', {
+        email,
+        password,
+      });
+      console.log('[STORE] Login response received:', data);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      set({ user: data.user, token: data.token });
+      console.log('[STORE] Login complete');
+    } catch (error: any) {
+      console.error('[STORE] Login failed:', error.message);
+      throw error;
+    }
   },
 
   register: async (name: string, email: string, password: string) => {
