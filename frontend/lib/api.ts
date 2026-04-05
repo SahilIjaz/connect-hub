@@ -6,6 +6,10 @@ const baseURL = process.env.NEXT_PUBLIC_API_URL
   : '/api';
 
 if (typeof window !== 'undefined') {
+  console.log('=== API INITIALIZATION ===');
+  console.log('NEXT_PUBLIC_API_URL env:', process.env.NEXT_PUBLIC_API_URL);
+  console.log('Final baseURL:', baseURL);
+  console.log('========================');
   logger.info(`API Base URL: ${baseURL}`);
   logger.info(`NEXT_PUBLIC_API_URL: ${process.env.NEXT_PUBLIC_API_URL}`);
 }
