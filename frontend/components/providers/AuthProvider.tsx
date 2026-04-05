@@ -7,6 +7,9 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   const loadUser = useAuthStore((s) => s.loadUser);
 
   useEffect(() => {
+    console.log('🚀 AuthProvider mounted - initializing');
+    console.log('📍 Current URL:', window.location.href);
+    console.log('🔑 Stored token:', localStorage.getItem('token') ? 'YES' : 'NO');
     loadUser();
   }, [loadUser]);
 
